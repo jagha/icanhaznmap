@@ -57,7 +57,7 @@ then
   if [ ${compareNewToSuppressTest} -ge 1 ]
   then
     #Send an email
-    #echo | awk -v template="$emailTemplate" -v bservers="$(comm -13 ${suppressTestFileName} ${newSevers})" 'BEGIN {sub(/BADSERVERS/, bservers, template); print template}' | ${sendEmailProgram} -f ${fromAddress} -t ${toAddress} -cc ${ccAddress} -u ${emailSubject} -s ${emailServer} >> /var/log/messages
+    echo | awk -v template="$emailTemplate" -v bservers="$(comm -13 ${suppressTestFileName} ${newSevers})" 'BEGIN {sub(/BADSERVERS/, bservers, template); print template}' | ${sendEmailProgram} -f ${fromAddress} -t ${toAddress} -cc ${ccAddress} -u ${emailSubject} -s ${emailServer} >> /var/log/messages
     # Add new servers to suppress_alerts to prevent future errors
   cat ${newSevers} >> ${suppressTestFileName}
     # Sort the files
